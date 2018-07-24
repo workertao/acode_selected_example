@@ -102,11 +102,11 @@ public class SelectedHorizontalAdapter<T extends BaseSelectBean> extends Recycle
     /**
      * 设置第一列的选中颜色
      *
-     * @param itemBgColor
+     * @param firstselectBgColors
      */
-    public void setFirstselectBgColor(int[] itemBgColor) {
-        noFirstSelectBgColor = itemBgColor[0];
-        firstselectBgColor = itemBgColor[1];
+    public void setFirstselectBgColor(int[] firstselectBgColors) {
+        noFirstSelectBgColor = firstselectBgColors[0];
+        firstselectBgColor = firstselectBgColors[1];
     }
 
     public ArrayList<T> getData() {

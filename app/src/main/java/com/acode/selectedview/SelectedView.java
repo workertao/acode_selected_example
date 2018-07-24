@@ -322,15 +322,28 @@ public class SelectedView<T extends BaseSelectBean> extends LinearLayout {
         if (index != 0 && !isInitListData) {
             return selectedAdapter;
         }
+        setAdapterData(selectedAdapter, selectIndex, columeNum, data);
+        return selectedAdapter;
+    }
+
+    /**
+     * 设置adapter所需数据
+     *
+     * @param selectedAdapter
+     * @param selectIndex
+     * @param columeNum
+     * @param data
+     * @param <T>
+     */
+    private <T extends BaseSelectBean> void setAdapterData(SelectedHorizontalAdapter selectedAdapter, int selectIndex, int columeNum, ArrayList<T> data) {
         selectedAdapter.setSelectIndex(selectIndex);
         selectedAdapter.setColumnNum(columeNum);
         selectedAdapter.setIsShowIcon(isShowIcon);
-        selectedAdapter.setData(data);
         selectedAdapter.setItemBgColor(itemBgColor);
         selectedAdapter.setItemTextColor(itemTextColor);
         selectedAdapter.setFirstselectBgColor(firstItemBgColor);
+        selectedAdapter.setData(data);
         selectedAdapter.notifyDataSetChanged();
-        return selectedAdapter;
     }
 
     /**
@@ -345,10 +358,10 @@ public class SelectedView<T extends BaseSelectBean> extends LinearLayout {
     private <T extends BaseSelectBean> SelectedVerticalAdapter initVerticalAdapter(int index, int columeNum, ArrayList<T> data) {
         SelectedVerticalAdapter selectedAdapter = new SelectedVerticalAdapter(context);
         selectedAdapter.setIsShowIcon(isShowIcon);
-        selectedAdapter.setData(data);
         selectedAdapter.setItemBgColor(itemBgColor);
         selectedAdapter.setItemTextColor(itemTextColor);
         selectedAdapter.setItemBgDrawable(itemBgDrawable);
+        selectedAdapter.setData(data);
         selectedAdapter.notifyDataSetChanged();
         return selectedAdapter;
     }
@@ -371,7 +384,7 @@ public class SelectedView<T extends BaseSelectBean> extends LinearLayout {
                 }
             };
             recyclerView.setLayoutManager(manager);
-            recyclerView.addItemDecoration(new SpaceItemDecoration(context, 10,4));
+            recyclerView.addItemDecoration(new SpaceItemDecoration(context, 10, 4));
             LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             recyclerView.setLayoutParams(params);
             if (bgres == null) {
@@ -518,9 +531,11 @@ public class SelectedView<T extends BaseSelectBean> extends LinearLayout {
                     }
                     //更新下一级列表
                     BaseSelectBean nextbean = (BaseSelectBean) selectedHorizontalAdapters.get(index).getData().get(position);
-                    selectedHorizontalAdapters.get(nextIndex).setData(nextbean.getNextBeans());
-                    selectedHorizontalAdapters.get(nextIndex).setSelectIndex(-1);
-                    selectedHorizontalAdapters.get(nextIndex).notifyDataSetChanged();
+                    SelectedHorizontalAdapter selectedHorizontalAdapter = selectedHorizontalAdapters.get(nextIndex);
+                    setAdapterData(selectedHorizontalAdapter,-1,selectedHorizontalAdapters.size(),nextbean.getNextBeans());
+//                    selectedHorizontalAdapters.get(nextIndex).setData(nextbean.getNextBeans());
+//                    selectedHorizontalAdapters.get(nextIndex).setSelectIndex(-1);
+//                    selectedHorizontalAdapters.get(nextIndex).notifyDataSetChanged();
                 }
             });
         }
