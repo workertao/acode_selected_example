@@ -59,31 +59,55 @@ public class SelectedVerticalActivity extends Activity {
         sv.selectedVerticalListener(new SelectedVerticalListener() {
             @Override
             public int getOrientation() {
+                //排列方式
                 return LinearLayout.VERTICAL;
             }
 
             @Override
             public int[] getWeigt() {
-                return new int[]{1, 1, 1,1, 1, 1};
+                //排列比例
+                return new int[]{1, 1, 1, 1, 1, 1};
             }
 
             @Override
             public int[] getBgColor() {
-                return new int[]{R.color.cffffff, R.color.cffffff, R.color.cffffff,R.color.cffffff, R.color.cffffff, R.color.cffffff};
+                //背景色
+                return new int[]{R.color.cffffff, R.color.cffffff, R.color.cffffff, R.color.cffffff, R.color.cffffff, R.color.cffffff};
             }
 
             @Override
             public String getSelectedIndex() {
+                //选中的数据
                 return json;
             }
 
             @Override
             public int[] getSelectedNum() {
-                return new int[]{2, 3, 4,5,6,7};
+                //每列可选中的数量
+                return new int[]{2, 3, 4, 5, 6, 7};
+            }
+
+            @Override
+            public int[] getItemBgColor() {
+                //item背景色
+                return new int[0];
+            }
+
+            @Override
+            public int[] getItemBgDrawable() {
+                //item背景
+                return new int[]{R.drawable.shape_num_border_radio2, R.drawable.shape_template_border_r2};
+            }
+
+            @Override
+            public int[] getItemTextColor() {
+                //item字体颜色
+                return new int[]{R.color.c333333, R.color.cff4400};
             }
 
             @Override
             public ArrayList[] getData() {
+                //数据源
                 return new ArrayList[]{
                         getListData(0),
                         getListData(1),
@@ -96,6 +120,7 @@ public class SelectedVerticalActivity extends Activity {
 
             @Override
             public boolean isShowIcon() {
+                //是否展示选中icon
                 return true;
             }
         });

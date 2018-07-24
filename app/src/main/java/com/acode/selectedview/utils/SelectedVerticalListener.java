@@ -42,6 +42,27 @@ public interface SelectedVerticalListener {
     int[] getSelectedNum();
 
     /**
+     * item背景色
+     *
+     * @return
+     */
+    int[] getItemBgColor();
+
+    /**
+     * item背景
+     *
+     * @return
+     */
+    int[] getItemBgDrawable();
+
+    /**
+     * item字体颜色
+     *
+     * @return
+     */
+    int[] getItemTextColor();
+
+    /**
      * 设置每列选中的下标
      *
      * @return

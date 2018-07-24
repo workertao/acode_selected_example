@@ -23,22 +23,23 @@ public class SelectedVerticalAdapter<T extends BaseSelectBean> extends RecyclerV
     private Context context;
     //数据源
     private ArrayList<T> data;
-    //当前是第几列
-    private int index;
-    //选中的下标
-    private int selectIndex = 0;
     //是否展示选中icon
     private boolean isShowIcon;
-    //一共有几列
-    private int columnNum;
+    //未选中背景
+    private int noSelectBgColor;
+    //选中背景
+    private int selectBgColor;
+    //未选中背景
+    private int noSelectBgDrawable;
+    //选中背景
+    private int selectBgDrawable;
+    //未选中字体
+    private int noSelectTextColor;
+    //选中字体
+    private int selectTextColor;
 
-    public int getSelectIndex() {
-        return selectIndex;
-    }
-
-    public SelectedVerticalAdapter(int index, Context context) {
+    public SelectedVerticalAdapter(Context context) {
         this.context = context;
-        this.index = index;
     }
 
     public void setData(ArrayList<T> data) {
@@ -54,13 +55,28 @@ public class SelectedVerticalAdapter<T extends BaseSelectBean> extends RecyclerV
         this.isShowIcon = isShowIcon;
     }
 
-    /**
-     * 设置有几列
-     *
-     * @param columnNum
-     */
-    public void setColumnNum(int columnNum) {
-        this.columnNum = columnNum;
+    public void setItemBgColor(int[] itemBgColor) {
+        if (itemBgColor==null || itemBgColor.length == 0){
+            return;
+        }
+        noSelectBgColor = itemBgColor[0];
+        selectBgColor = itemBgColor[1];
+    }
+
+    public void setItemBgDrawable(int[] itemBgDrawable) {
+        if (itemBgDrawable==null || itemBgDrawable.length == 0){
+            return;
+        }
+        noSelectBgDrawable = itemBgDrawable[0];
+        selectBgDrawable = itemBgDrawable[1];
+    }
+
+    public void setItemTextColor(int[] itemTextColor) {
+        if (itemTextColor==null || itemTextColor.length == 0){
+            return;
+        }
+        noSelectTextColor = itemTextColor[0];
+        selectTextColor = itemTextColor[1];
     }
 
     public ArrayList<T> getData() {
@@ -77,14 +93,26 @@ public class SelectedVerticalAdapter<T extends BaseSelectBean> extends RecyclerV
         final BaseSelectBean baseSelectBean = data.get(position);
         final PopCityViewHolder popCityViewHolder = (PopCityViewHolder) holder;
         popCityViewHolder.tvIndustryName.setText(baseSelectBean.getName());
-        if (baseSelectBean.isSelect()){
-            popCityViewHolder.tvIndustryName.setTextColor(context.getResources().getColor(R.color.cff4400));
+        if (baseSelectBean.isSelect()) {
+            popCityViewHolder.tvIndustryName.setTextColor(context.getResources().getColor(selectTextColor));
+            if (selectBgDrawable != 0) {
+                popCityViewHolder.itemView.setBackground(context.getResources().getDrawable(selectBgDrawable));
+            }
+            if (selectBgColor != 0) {
+                popCityViewHolder.itemView.setBackgroundColor(context.getResources().getColor(selectBgColor));
+            }
             if (isShowIcon) {
                 popCityViewHolder.ivIndustryNameState.setVisibility(View.VISIBLE);
             }
-        }else{
+        } else {
             popCityViewHolder.ivIndustryNameState.setVisibility(View.GONE);
-            popCityViewHolder.tvIndustryName.setTextColor(context.getResources().getColor(R.color.c333333));
+            popCityViewHolder.tvIndustryName.setTextColor(context.getResources().getColor(noSelectTextColor));
+            if (selectBgDrawable != 0) {
+                popCityViewHolder.itemView.setBackground(context.getResources().getDrawable(noSelectBgDrawable));
+            }
+            if (selectBgColor != 0) {
+                popCityViewHolder.itemView.setBackgroundColor(context.getResources().getColor(noSelectBgColor));
+            }
         }
         popCityViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,10 +138,6 @@ public class SelectedVerticalAdapter<T extends BaseSelectBean> extends RecyclerV
             tvIndustryName = (TextView) itemView.findViewById(R.id.tvIndustryName);
             ivIndustryNameState = (ImageView) itemView.findViewById(R.id.ivIndustryNameState);
         }
-    }
-
-    public void setSelectIndex(int index) {
-        this.selectIndex = index;
     }
 
     public OnItemClickListener onItemClickListener;

@@ -21,6 +21,7 @@ import com.acode.selectedview.bean.BaseSelectedBean;
 import com.acode.selectedview.utils.DimenUtils;
 import com.acode.selectedview.utils.SelectedHorizontalListener;
 import com.acode.selectedview.utils.SelectedVerticalListener;
+import com.acode.selectedview.utils.SpaceItemDecoration;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 
@@ -48,6 +49,14 @@ public class SelectedView<T extends BaseSelectBean> extends LinearLayout {
     private int[] bgres;
     //选中的数量
     private int[] selectedNum;
+    //item的字体颜色
+    private int[] itemTextColor;
+    //item的背景颜色
+    private int[] itemBgColor;
+    //item的背景颜色
+    private int[] itemBgDrawable;
+    //第一列的item的背景颜色
+    private int[] firstItemBgColor;
     //是否展示选中icon
     private boolean isShowIcon;
     //是否初始化所有的列表数据
@@ -86,6 +95,9 @@ public class SelectedView<T extends BaseSelectBean> extends LinearLayout {
         setIsShowIcon(selectedHorizontalListener.isShowIcon());
         setOrientation(selectedHorizontalListener.getOrientation());
         setSelectedIndexForHorizontal(selectedHorizontalListener.getSelectedIndex());
+        setItemTextColor(selectedHorizontalListener.getItemTextColor());
+        setItemBgColor(selectedHorizontalListener.getItemBgColor());
+        setFirstItemBgColor(selectedHorizontalListener.getFirstItemBgColor());
         setData(selectedHorizontalListener.getData());
         return this;
     }
@@ -103,6 +115,9 @@ public class SelectedView<T extends BaseSelectBean> extends LinearLayout {
         setOrientation(selectedVerticalListener.getOrientation());
         setSelectedIndexForVertical(selectedVerticalListener.getSelectedIndex());
         setSelectedNum(selectedVerticalListener.getSelectedNum());
+        setItemBgDrawable(selectedVerticalListener.getItemBgDrawable());
+        setItemBgColor(selectedVerticalListener.getItemBgColor());
+        setItemTextColor(selectedVerticalListener.getItemTextColor());
         setData(selectedVerticalListener.getData());
         return this;
     }
@@ -190,6 +205,50 @@ public class SelectedView<T extends BaseSelectBean> extends LinearLayout {
     }
 
     /**
+     * 设置每列item的字体颜色
+     *
+     * @param itemTextColor
+     * @return
+     */
+    public SelectedView setItemTextColor(int[] itemTextColor) {
+        this.itemTextColor = itemTextColor;
+        return this;
+    }
+
+    /**
+     * 设置每列item的背景色
+     *
+     * @param itemBgColor
+     * @return
+     */
+    public SelectedView setItemBgColor(int[] itemBgColor) {
+        this.itemBgColor = itemBgColor;
+        return this;
+    }
+
+    /**
+     * 设置第一列item的背景色
+     *
+     * @param firstItemBgColor
+     * @return
+     */
+    public SelectedView setFirstItemBgColor(int[] firstItemBgColor) {
+        this.firstItemBgColor = firstItemBgColor;
+        return this;
+    }
+
+    /**
+     * 设置item的背景色
+     *
+     * @param itemBgDrawable
+     * @return
+     */
+    public SelectedView setItemBgDrawable(int[] itemBgDrawable) {
+        this.itemBgDrawable = itemBgDrawable;
+        return this;
+    }
+
+    /**
      * 设置每列的选中项
      * 垂直
      */
@@ -267,6 +326,9 @@ public class SelectedView<T extends BaseSelectBean> extends LinearLayout {
         selectedAdapter.setColumnNum(columeNum);
         selectedAdapter.setIsShowIcon(isShowIcon);
         selectedAdapter.setData(data);
+        selectedAdapter.setItemBgColor(itemBgColor);
+        selectedAdapter.setItemTextColor(itemTextColor);
+        selectedAdapter.setFirstselectBgColor(firstItemBgColor);
         selectedAdapter.notifyDataSetChanged();
         return selectedAdapter;
     }
@@ -281,10 +343,12 @@ public class SelectedView<T extends BaseSelectBean> extends LinearLayout {
      * @return
      */
     private <T extends BaseSelectBean> SelectedVerticalAdapter initVerticalAdapter(int index, int columeNum, ArrayList<T> data) {
-        SelectedVerticalAdapter selectedAdapter = new SelectedVerticalAdapter(index, context);
-        selectedAdapter.setColumnNum(columeNum);
+        SelectedVerticalAdapter selectedAdapter = new SelectedVerticalAdapter(context);
         selectedAdapter.setIsShowIcon(isShowIcon);
         selectedAdapter.setData(data);
+        selectedAdapter.setItemBgColor(itemBgColor);
+        selectedAdapter.setItemTextColor(itemTextColor);
+        selectedAdapter.setItemBgDrawable(itemBgDrawable);
         selectedAdapter.notifyDataSetChanged();
         return selectedAdapter;
     }
@@ -307,6 +371,7 @@ public class SelectedView<T extends BaseSelectBean> extends LinearLayout {
                 }
             };
             recyclerView.setLayoutManager(manager);
+            recyclerView.addItemDecoration(new SpaceItemDecoration(context, 10,4));
             LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             recyclerView.setLayoutParams(params);
             if (bgres == null) {

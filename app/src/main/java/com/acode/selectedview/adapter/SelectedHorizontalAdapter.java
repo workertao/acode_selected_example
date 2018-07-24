@@ -31,6 +31,18 @@ public class SelectedHorizontalAdapter<T extends BaseSelectBean> extends Recycle
     private boolean isShowIcon;
     //一共有几列
     private int columnNum;
+    //未选中背景
+    private int noFirstSelectBgColor;
+    //选中背景
+    private int firstselectBgColor;
+    //未选中背景
+    private int noSelectBgColor;
+    //选中背景
+    private int selectBgColor;
+    //未选中字体
+    private int noSelectTextColor;
+    //选中字体
+    private int selectTextColor;
 
     public int getSelectIndex() {
         return selectIndex;
@@ -63,6 +75,40 @@ public class SelectedHorizontalAdapter<T extends BaseSelectBean> extends Recycle
         this.columnNum = columnNum;
     }
 
+    /**
+     * 设置每列item的字体颜色
+     *
+     * @param itemTextColor
+     * @return
+     */
+    public SelectedHorizontalAdapter setItemTextColor(int[] itemTextColor) {
+        noSelectTextColor = itemTextColor[0];
+        selectTextColor = itemTextColor[1];
+        return this;
+    }
+
+    /**
+     * 设置每列item的背景颜色
+     *
+     * @param itemBgColor
+     * @return
+     */
+    public SelectedHorizontalAdapter setItemBgColor(int[] itemBgColor) {
+        noSelectBgColor = itemBgColor[0];
+        selectBgColor = itemBgColor[1];
+        return this;
+    }
+
+    /**
+     * 设置第一列的选中颜色
+     *
+     * @param itemBgColor
+     */
+    public void setFirstselectBgColor(int[] itemBgColor) {
+        noFirstSelectBgColor = itemBgColor[0];
+        firstselectBgColor = itemBgColor[1];
+    }
+
     public ArrayList<T> getData() {
         return data;
     }
@@ -78,13 +124,23 @@ public class SelectedHorizontalAdapter<T extends BaseSelectBean> extends Recycle
         final PopCityViewHolder popCityViewHolder = (PopCityViewHolder) holder;
         popCityViewHolder.tvIndustryName.setText(baseSelectBean.getName());
         if (selectIndex == position) {
-            popCityViewHolder.tvIndustryName.setTextColor(context.getResources().getColor(R.color.cff4400));
+            if (firstselectBgColor != 0 && index == 0) {
+                popCityViewHolder.itemView.setBackgroundColor(context.getResources().getColor(firstselectBgColor));
+            } else {
+                popCityViewHolder.itemView.setBackgroundColor(context.getResources().getColor(selectBgColor));
+            }
+            popCityViewHolder.tvIndustryName.setTextColor(context.getResources().getColor(selectTextColor));
             if (isShowIcon && index == columnNum - 1) {
                 popCityViewHolder.ivIndustryNameState.setVisibility(View.VISIBLE);
             }
         } else {
+            if (firstselectBgColor != 0 && index == 0) {
+                popCityViewHolder.itemView.setBackgroundColor(context.getResources().getColor(noFirstSelectBgColor));
+            } else {
+                popCityViewHolder.itemView.setBackgroundColor(context.getResources().getColor(noSelectBgColor));
+            }
             popCityViewHolder.ivIndustryNameState.setVisibility(View.GONE);
-            popCityViewHolder.tvIndustryName.setTextColor(context.getResources().getColor(R.color.c333333));
+            popCityViewHolder.tvIndustryName.setTextColor(context.getResources().getColor(noSelectTextColor));
         }
         popCityViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

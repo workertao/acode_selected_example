@@ -50,26 +50,49 @@ public class SelectedHorizontallActivity extends Activity {
         sv.setSelectedHorizontalListener(new SelectedHorizontalListener() {
             @Override
             public int getOrientation() {
+                //排列方式
                 return LinearLayout.HORIZONTAL;
             }
 
             @Override
             public int[] getWeigt() {
+                //每列的比例
                 return new int[]{1, 1, 1};
             }
 
             @Override
             public int[] getBgColor() {
-                return new int[]{R.color.cffffff, R.color.cffffff, R.color.cffffff};
+                //每列的背景色
+                return new int[]{R.color.cf8f9fa, R.color.cffffff, R.color.cffffff};
+            }
+
+            @Override
+            public int[] getItemTextColor() {
+                //每列的item字体颜色  选中和未选中
+                return new int[]{R.color.c333333, R.color.cff4400};
+            }
+
+            @Override
+            public int[] getItemBgColor() {
+                //每列的item背景色  选中和未选中
+                return new int[]{R.color.cffffff, R.color.cffffff};
+            }
+
+            @Override
+            public int[] getFirstItemBgColor() {
+                //第一列的选中和未选中的颜色
+                return new int[]{R.color.cf8f9fa, R.color.cffffff};
             }
 
             @Override
             public int[] getSelectedIndex() {
+                //选中的下标
                 return new int[]{0, 0, 0};
             }
 
             @Override
             public ArrayList[] getData() {
+                //数据源
                 return new ArrayList[]{
                         getListData(),
                         getListData().get(0).getNextBeans(),
@@ -79,11 +102,13 @@ public class SelectedHorizontallActivity extends Activity {
 
             @Override
             public boolean isShowIcon() {
+                //是否展示选中icon
                 return true;
             }
 
             @Override
             public boolean isInitAllData() {
+                //数据是否全部初始化
                 return true;
             }
         });

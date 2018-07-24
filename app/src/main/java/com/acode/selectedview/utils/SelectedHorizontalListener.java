@@ -31,6 +31,27 @@ public interface SelectedHorizontalListener {
     int[] getBgColor();
 
     /**
+     * 设置每列的字体的选中和未选中的颜色
+     *
+     * @return
+     */
+    int[] getItemTextColor();
+
+    /**
+     * 设置每列item的背景选中和未选中的颜色
+     *
+     * @return
+     */
+    int[] getItemBgColor();
+
+    /**
+     * 设置第一列的背景色
+     *
+     * @return
+     */
+    int[] getFirstItemBgColor();
+
+    /**
      * 设置每列选中的下标
      * 水平
      *
