@@ -87,7 +87,7 @@ public class SelectedHorizontallActivity extends Activity {
             @Override
             public int[] getSelectedIndex() {
                 //选中的下标
-                return new int[]{0, 0, 0};
+                return new int[]{2, 3, 4};
             }
 
             @Override

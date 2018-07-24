@@ -4,6 +4,170 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="排列方式：" />
+
+        <RadioGroup
+            android:id="@+id/radioOrienGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checkedButton="@+id/radioHer"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioHer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="水平" />
+
+            <RadioButton
+                android:id="@+id/radioVer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="垂直" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="展示几列数据：" />
+
+        <EditText
+            android:id="@+id/etCloumNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="例如5" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="排列比例：" />
+
+        <EditText
+            android:id="@+id/etBili"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="例如1:1:1" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="每列第几个选中：" />
+
+        <EditText
+            android:id="@+id/etSelectedIndex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="例如1，1，1" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="每列选中的最大数量：" />
+
+        <EditText
+            android:id="@+id/etSelectedNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="例如5" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="是否展示选中的icon：" />
+
+        <RadioGroup
+            android:id="@+id/radioSelectedGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checkedButton="@+id/radioHer"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="是" />
+
+            <RadioButton
+                android:id="@+id/radioNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="否" />
+        </RadioGroup>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="是否初始化全部数据：" />
+
+        <RadioGroup
+            android:id="@+id/radioDataGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checkedButton="@+id/radioHer"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioDataYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="是" />
+
+            <RadioButton
+                android:id="@+id/radioDataNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="否" />
+        </RadioGroup>
+    </LinearLayout>
+
     <Button
         android:id="@+id/tv"
         android:layout_width="match_parent"
@@ -11,6 +175,7 @@
         android:layout_weight="1"
         android:gravity="left"
         android:hint="水平列表" />
+
     <Button
         android:id="@+id/tv1"
         android:layout_width="match_parent"
