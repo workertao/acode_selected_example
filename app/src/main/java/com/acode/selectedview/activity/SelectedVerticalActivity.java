@@ -9,19 +9,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.acode.selectedview.OnVerticalListener;
+import com.acode.selectedview.listener.OnVerticalListener;
 import com.acode.selectedview.R;
 import com.acode.selectedview.SelectedView;
 import com.acode.selectedview.bean.BaseSelectedBean;
 import com.acode.selectedview.bean.SvBean;
-import com.acode.selectedview.utils.SelectedHorizontalListener;
-import com.acode.selectedview.utils.SelectedVerticalListener;
+import com.acode.selectedview.listener.SelectedVerticalListener;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
 
 /**
  * user:yangtao

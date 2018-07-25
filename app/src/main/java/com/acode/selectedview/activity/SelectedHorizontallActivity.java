@@ -9,13 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.acode.selectedview.OnHorizontalListener;
+import com.acode.selectedview.listener.OnHorizontalListener;
 import com.acode.selectedview.R;
 import com.acode.selectedview.SelectedView;
-import com.acode.selectedview.bean.BaseSelectBean;
 import com.acode.selectedview.bean.BaseSelectedBean;
 import com.acode.selectedview.bean.SvBean;
-import com.acode.selectedview.utils.SelectedHorizontalListener;
+import com.acode.selectedview.listener.SelectedHorizontalListener;
 import com.alibaba.fastjson.JSON;
 
 import java.util.ArrayList;

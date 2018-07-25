@@ -6,21 +6,15 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.acode.selectedview.activity.SelectedHorizontallActivity;
 import com.acode.selectedview.activity.SelectedVerticalActivity;
 import com.acode.selectedview.bean.BaseSelectedBean;
-import com.acode.selectedview.bean.SvBean;
+import com.acode.selectedview.utils.DLog;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private Button tv;

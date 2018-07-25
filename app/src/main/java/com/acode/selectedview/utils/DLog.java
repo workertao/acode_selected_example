@@ -1,4 +1,4 @@
-package com.acode.selectedview;
+package com.acode.selectedview.utils;
 
 import android.util.Log;
 

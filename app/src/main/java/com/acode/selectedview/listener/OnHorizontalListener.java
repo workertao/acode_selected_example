@@ -1,4 +1,4 @@
-package com.acode.selectedview;
+package com.acode.selectedview.listener;
 import com.acode.selectedview.bean.BaseSelectedBean;
 
 import java.util.ArrayList;

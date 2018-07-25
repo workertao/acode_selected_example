@@ -18,9 +18,12 @@ import com.acode.selectedview.adapter.SelectedHorizontalAdapter;
 import com.acode.selectedview.adapter.SelectedVerticalAdapter;
 import com.acode.selectedview.bean.BaseSelectBean;
 import com.acode.selectedview.bean.BaseSelectedBean;
+import com.acode.selectedview.utils.DLog;
 import com.acode.selectedview.utils.DimenUtils;
-import com.acode.selectedview.utils.SelectedHorizontalListener;
-import com.acode.selectedview.utils.SelectedVerticalListener;
+import com.acode.selectedview.listener.OnHorizontalListener;
+import com.acode.selectedview.listener.OnVerticalListener;
+import com.acode.selectedview.listener.SelectedHorizontalListener;
+import com.acode.selectedview.listener.SelectedVerticalListener;
 import com.acode.selectedview.utils.SpaceItemDecoration;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -533,9 +536,6 @@ public class SelectedView<T extends BaseSelectBean> extends LinearLayout {
                     BaseSelectBean nextbean = (BaseSelectBean) selectedHorizontalAdapters.get(index).getData().get(position);
                     SelectedHorizontalAdapter selectedHorizontalAdapter = selectedHorizontalAdapters.get(nextIndex);
                     setAdapterData(selectedHorizontalAdapter,-1,selectedHorizontalAdapters.size(),nextbean.getNextBeans());
-//                    selectedHorizontalAdapters.get(nextIndex).setData(nextbean.getNextBeans());
-//                    selectedHorizontalAdapters.get(nextIndex).setSelectIndex(-1);
-//                    selectedHorizontalAdapters.get(nextIndex).notifyDataSetChanged();
                 }
             });
         }

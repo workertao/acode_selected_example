@@ -2,7 +2,9 @@
 ### 自定义选择器 ###
 
 最近做项目，发现有很多二三级联动和筛选条件的页面，仔细观察发现他们其实是一样的，只是数据和排列方式不同，
-我也在寻找一种最简便的方法来处理这么多无聊和枯燥的页面，我选择封装一个选择器，
+我也在寻找一种最简便的方法来处理这么多无聊和枯燥的页面，我选择封装一个选择器。这时候多态的重要性就体现出来，
+在多态的世界里，我不需要了解准确的实体类型，我只要知道你是这个基类就OK了。我选择抽一个基类出来，然后抽两个
+公用的方法。
 
     1，水平联动，级别不限制，根据数据源的长度来展示。
     2，垂直列表，级别不限制，根据数据源的长度来展示。
@@ -10,6 +12,54 @@
 在项目中大多数的水平筛选条件都是单选且联动机制，垂直筛选条件都是多选且不联动，于是针对这个来封装一个选择器
 
 ### 使用方法 ###
+
+##### 实体类继承BaseSelectBean ####
+
+    public class SvBean extends BaseSelectBean {
+        private int id;
+        private String name;
+        private ArrayList<SvBean> svBeans;
+    
+        @Override
+        public int getId() {
+            return id;
+        }
+    
+        @Override
+        public String getName() {
+            return name;
+        }
+    
+        @Override
+        public ArrayList<BaseSelectBean> getNextBeans() {
+            //水平联动的时候需要返回下一级的数据
+            //垂直筛选的时候不返回null即可
+            ArrayList<BaseSelectBean> baseSelectBeans = new ArrayList<>();
+            for (SvBean svBean : svBeans) {
+                baseSelectBeans.add(svBean);
+            }
+            return baseSelectBeans;
+        }
+    
+        public SvBean setId(int id) {
+            this.id = id;
+            return this;
+        }
+    
+        public SvBean setName(String name) {
+            this.name = name;
+            return this;
+        }
+    
+        public ArrayList<SvBean> getSvBeans() {
+            return svBeans;
+        }
+    
+        public SvBean setSvBeans(ArrayList<SvBean> svBeans) {
+            this.svBeans = svBeans;
+            return this;
+        }
+    }
 
 ##### xml ####
         <com.acode.selectedview.SelectedView
